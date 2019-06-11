@@ -1,14 +1,19 @@
 ﻿@model IEnumerable<TravelExpertsWeb.Models.BookingDetails>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "BookingDetails";
 }
 
-<h1>Index</h1>
+<!--<h1>Index</h1>-->
+<h1> BookingDetails </h1><br>
 
+
+<!--
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+-->
+
 <table class="table">
     <thead>
         <tr>
@@ -27,7 +32,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Destination)
             </th>
-            <th>
+            <!-- 20190610 <th>
                 @Html.DisplayNameFor(model => model.BasePrice)
             </th>
             <th>
@@ -47,8 +52,10 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductSupplierId)
+            </th>-->
+            <th>
+                Price
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -70,6 +77,19 @@
                 @Html.DisplayFor(modelItem => item.Destination)
             </td>
             <td>
+                @{
+                    decimal bp, ac;
+                    if (item.BasePrice == null) { bp = 0; }
+                    else { bp = Convert.ToDecimal(item.BasePrice); }
+
+                    if (item.AgencyCommission == null) { ac = 0; }
+                    else { ac = Convert.ToDecimal(item.AgencyCommission); }
+
+                    decimal price = bp + ac + item.Fee.FeeAmt;
+                }
+                @price
+            </td>
+            <!--20190610 <td>
                 @Html.DisplayFor(modelItem => item.BasePrice)
             </td>
             <td>
@@ -94,7 +114,7 @@
                 <a asp-action="Edit" asp-route-id="@item.BookingDetailId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.BookingDetailId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.BookingDetailId">Delete</a>
-            </td>
+            </td>-->
         </tr>
 }
     </tbody>

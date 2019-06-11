@@ -18,5 +18,8 @@ namespace TravelExpertsWeb.Models
         public string ClassId { get; set; }
         public string FeeId { get; set; }
         public int? ProductSupplierId { get; set; }
+
+        // 20190610 Added
+        public virtual Fees Fee { get; set; }
     }
 }
