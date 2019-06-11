@@ -21,7 +21,17 @@ namespace TravelExpertsWeb.Controllers
         // GET: BookingDetails
         public async Task<IActionResult> Index()
         {
-            return View(await _context.BookingDetails.ToListAsync());
+            //return View(await _context.BookingDetails.ToListAsync());
+            // 20190610 Get current cutomer's bookings in detail
+            var results = from c in _context.BookingDetails
+                          join b in
+                            from b in _context.Bookings
+                            where b.CustomerId == 143
+                            select b
+                          on c.BookingId equals b.BookingId
+                          select c;
+
+            return View(results);
         }
 
         // GET: BookingDetails/Details/5
