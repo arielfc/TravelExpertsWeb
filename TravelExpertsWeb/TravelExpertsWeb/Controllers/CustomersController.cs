@@ -148,5 +148,33 @@ namespace TravelExpertsWeb.Controllers
         {
             return _context.Customers.Any(e => e.CustomerId == id);
         }
-    }
+
+
+        public async Task<IActionResult> SignUp(Customers customers)
+        {
+            // ----Start option 2.1 Write data to table----
+            if (ModelState.IsValid)
+            {
+                if (_context.Customers.Any(x => x.CustUserName == customers.CustUserName))
+                {
+                    ViewBag.Message = "User name already exist! Please change your user name.";
+                    ViewData["AgentId"] = new SelectList(_context.Agents, "AgentId", "AgentId", customers.AgentId);
+                    return View(customers);
+                }
+                else
+                {
+                    //string password = customers.PasswordNotHashed;
+                    //customers.PasswordHashed = HashPassword(password);
+                    //customers.PasswordSalt = GenSalt();
+                    _context.Add(customers);
+                    await _context.SaveChangesAsync();
+                    ModelState.Clear();
+                    ViewBag.message = customers.CustUserName + " registered successfully!";
+                    return View("~/Views/Home/Index.cshtml");
+                }
+            }
+            ViewData["AgentId"] = new SelectList(_context.Agents, "AgentId", "AgentId", customers.AgentId);
+            return View(customers);
+        }
+        }
 }
