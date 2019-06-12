@@ -98,5 +98,8 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.CustomerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to List</a> |
+    <a asp-controller="BookingDetails"
+       asp-action="Index"
+       asp-route-id="@Model.CustomerId">Booking Details</a>
 </div>

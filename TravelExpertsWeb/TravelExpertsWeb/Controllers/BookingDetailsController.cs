@@ -19,18 +19,22 @@ namespace TravelExpertsWeb.Controllers
         }
 
         // GET: BookingDetails
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
             //return View(await _context.BookingDetails.ToListAsync());
             // 20190610 Get current cutomer's bookings in detail
-            var results = from c in _context.BookingDetails
+            // 20190610 Get current cutomer's bookings in detail
+            var results = from c in _context.BookingDetails.Include(c => c.Fee)
                           join b in
                             from b in _context.Bookings
-                            where b.CustomerId == 143
+                            where b.CustomerId == id
                             select b
                           on c.BookingId equals b.BookingId
+                          join f in _context.Fees
+                          on c.FeeId equals f.FeeId
+                          orderby c.TripStart
                           select c;
-
+            ViewBag.id = id;
             return View(results);
         }
 
