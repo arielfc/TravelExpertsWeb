@@ -71,6 +71,7 @@ namespace TravelExpertsWeb.Models
         [Required(ErrorMessage = "Please enter your User name")]
         [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed")]
         public string CustUserName { get; set; }
+        
 
         //[DisplayName("Confirm Password")]
         //[DataType(DataType.Password)]

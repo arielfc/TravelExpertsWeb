@@ -148,8 +148,7 @@ namespace TravelExpertsWeb.Controllers
         {
             return _context.Customers.Any(e => e.CustomerId == id);
         }
-
-
+        
         public async Task<IActionResult> SignUp(Customers customers)
         {
             // ----Start option 2.1 Write data to table----
