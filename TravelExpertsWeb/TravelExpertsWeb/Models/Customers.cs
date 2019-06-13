@@ -38,12 +38,12 @@ namespace TravelExpertsWeb.Models
         public string CustCountry { get; set; }
 
         [DisplayName("Home Phone")]
+        [Required(ErrorMessage = "Please enter your home phone")]
         [RegularExpression("^((\\+1-?)|0)?[0-9]{10}$",
             ErrorMessage = "Please enter a valid phone number")]
         public string CustHomePhone { get; set; }
 
         [DisplayName("Business Phone")]
-        [Required(ErrorMessage = "Please enter your business phone")]
         [RegularExpression("^((\\+1-?)|0)?[0-9]{10}$",
             ErrorMessage = "Please enter a valid phone number")]
         public string CustBusPhone { get; set; }
