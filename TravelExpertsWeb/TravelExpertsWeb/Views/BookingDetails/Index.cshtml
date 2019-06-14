@@ -65,10 +65,10 @@
                 @Html.DisplayFor(modelItem => item.ItineraryNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TripStart)
+                @Html.DisplayFor(modelItem => item.TripStart, "DateTimeTemplate")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TripEnd)
+                @Html.DisplayFor(modelItem => item.TripEnd, "DateTimeTemplate")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -87,7 +87,7 @@
 
                     decimal price = bp + ac + item.Fee.FeeAmt;
                 }
-                @price
+                @price.ToString("c")
             </td>
             <!--20190610 <td>
                 @Html.DisplayFor(modelItem => item.BasePrice)
