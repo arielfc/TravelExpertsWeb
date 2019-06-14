@@ -1,0 +1,216 @@
+﻿@model TravelExpertsWebApplication.Models.Customers
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        background: white;
+    }
+
+    form {
+        width: 60%;
+        margin: 60px auto;
+        background: #f8faff;
+        padding: 60px 120px 80px 120px;
+        text-align: center;
+        -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+        box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    }
+
+    label {
+        display: block;
+        position: relative;
+        margin: 15px 0px;
+    }
+
+    .label-txt {
+        position: absolute;
+        top: -1.6em;
+        padding: 10px;
+        font-family: sans-serif;
+        font-size: .8em;
+        letter-spacing: 1px;
+        color: rgb(120,120,120);
+        transition: ease .3s;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+
+    .line-box {
+        position: relative;
+        width: 100%;
+        height: 2px;
+        background: #BCBCBC;
+    }
+
+    .line {
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #f85959;
+        transition: ease .6s;
+    }
+
+    .input:focus + .line-box .line {
+        width: 100%;
+    }
+
+    .label-active {
+        top: -3em;
+    }
+
+    button {
+        display: inline-block;
+        padding: 12px 24px;
+        background: rgb(220,220,220);
+        font-weight: bold;
+        color: rgb(120,120,120);
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: ease .3s;
+    }
+
+        button:hover {
+            background: #f85959;
+            color: #ffffff;
+        }
+</style>
+
+<div class="hero-wrap js-fullheight" style="background-image: url('../images/register.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span>Register</span></p>
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Register</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form asp-action="Create" asp-controller="Customers">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h3 class="heading mb-3">Sign up to get started</h3>
+    <label asp-for="CustFirstName">
+        @*<p class="label-txt">ENTER YOUR FIRST NAME</p>*@
+        <input asp-for="CustFirstName" type="text" class="input" placeholder="First Name">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustFirstName" class="text-danger"></span>
+    </label>
+    <label asp-for="CustLastName">
+        @*<p class="label-txt">ENTER YOUR LAST NAME</p>*@
+        <input asp-for="CustLastName" type="text" class="input" placeholder="Last Name">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustLastName" class="text-danger"></span>
+    </label>
+    <label asp-for="CustAddress">
+        @*<p class="label-txt">ENTER YOUR ADDRESS</p>*@
+        <input asp-for="CustAddress" type="text" class="input" placeholder="Address">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustAddress" class="text-danger"></span>
+    </label>
+    <label asp-for="CustCity">
+        @*<p class="label-txt">ENTER YOUR CITY</p>*@
+        <input asp-for="CustCity" type="text" class="input" placeholder="City">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustCity" class="text-danger"></span>
+    </label>
+    <label asp-for="CustProv">
+        @*<p class="label-txt">ENTER YOUR PROVINCE</p>*@
+        <input asp-for="CustProv" type="text" class="input" placeholder="Postal Code">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustProv" class="text-danger"></span>
+    </label>
+    <label asp-for="CustPostal">
+        @*<p class="label-txt">ENTER YOUR POSTAL CODE</p>*@
+        <input asp-for="CustPostal" type="text" class="input" placeholder="Province">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustPostal" class="text-danger"></span>
+    </label>
+    @*<label asp-for="CustCountry">
+            <p class="label-txt">ENTER YOUR POSTAL CODE</p>
+            <input asp-for="CustCountry" type="text" class="input" placeholder="Country">
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+            <span asp-validation-for="CustCountry" class="text-danger"></span>
+        </label>*@
+    <label asp-for="CustHomePhone">
+        @*<p class="label-txt">ENTER YOUR PHONE NUMBER</p>*@
+        <input asp-for="CustHomePhone" type="text" class="input" placeholder="Phone Number">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustHomePhone" class="text-danger"></span>
+    </label>
+    <label asp-for="CustEmail">
+        @*<p class="label-txt">ENTER YOUR PHONE NUMBER</p>*@
+        <input asp-for="CustEmail" type="text" class="input" placeholder="Email Address">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="CustEmail" class="text-danger"></span>
+    </label>
+    <label asp-for="PasswordNotHashed">
+        @*<p class="label-txt">ENTER YOUR PASSWORD</p>*@
+        <input asp-for="PasswordNotHashed" type="password" class="input" placeholder="Password">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="PasswordNotHashed" class="text-danger"></span>
+    </label>
+    @*<label asp-for="ConfirmPassword">
+        <input asp-for="ConfirmPassword" type="text" class="input" placeholder="Confirm Password">
+        <div class="line-box">
+            <div class="line"></div>
+        </div>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </label>*@
+    <button type="submit" value="Create">Sign Up</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+
+        $('.input').focus(function () {
+            $(this).parent().find(".label-txt").addClass('label-active');
+        });
+
+        $(".input").focusout(function () {
+            if ($(this).val() == '') {
+                $(this).parent().find(".label-txt").removeClass('label-active');
+            };
+        });
+
+    });
+</script>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
