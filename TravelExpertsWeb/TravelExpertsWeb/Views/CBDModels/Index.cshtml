@@ -1,0 +1,162 @@
+﻿@using TravelExpertsWeb.Models
+@model CBDModels
+
+@{
+    ViewData["Title"] = "Account";
+}
+<br><br><br><br>
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <h4>Account Information</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                First Name  
+            </dt>
+            <dd class="col-md-4">
+                @Html.DisplayFor(model => model.customer.CustFirstName)
+            </dd>
+            <dt class="col-sm-2">
+                Last Name  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustLastName)
+            </dd>
+            <dt class="col-sm-2">
+                Address  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustAddress)
+            </dd>
+            <dt class="col-sm-2">
+                City  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustCity)
+            </dd>
+            <dt class="col-sm-2">
+                Province  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustProv)
+            </dd>
+            <dt class="col-sm-2">
+                Postal Code  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustPostal)
+            </dd>
+            <dt class="col-sm-2">
+                Country  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustCountry)
+            </dd>
+            <dt class="col-sm-2">
+                Home Phone  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustHomePhone)
+            </dd>
+            <dt class="col-sm-2">
+                Business Phone  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustBusPhone)
+            </dd>
+            <dt class="col-sm-2">
+                Email  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustEmail)
+            </dd>
+            
+            <dt class="col-sm-2">
+                User Name  
+            </dt>
+            <dd class="col-sm-4">
+                @Html.DisplayFor(model => model.customer.CustUserName)
+            </dd>
+            
+        </dl>
+    </div>
+
+    <div class=" col-md-8">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Itinerary No
+                    </th>
+                    <th>
+                        TripStart Date
+                    </th>
+                    <th>
+                        TripEnd Date
+                    </th>
+                    <th>
+                        Trip Details
+                    </th>
+                    <th>
+                        Destination
+                    </th>
+                    <th>
+                        Package Price
+                    </th>
+                    <th>
+                        Fee
+                    </th>
+                    <th>
+                        SubTotal
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.bookingDetails)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItineraryNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TripStart, "DateTimeTemplate")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TripEnd, "DateTimeTemplate")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @{
+                            decimal bp, ac;
+                            if (item.BasePrice == null) { bp = 0; }
+                            else { bp = Convert.ToDecimal(item.BasePrice); }
+
+                            if (item.AgencyCommission == null) { ac = 0; }
+                            else { ac = Convert.ToDecimal(item.AgencyCommission); }
+
+                            decimal price = bp + ac;
+                        }
+                        @price.ToString("c")
+                    </td>
+                    <td>
+                        @item.Fee.FeeAmt.ToString("c")
+                    </td>
+                    <td>
+                        @{decimal sub;
+                            sub = price + item.Fee.FeeAmt;}
+                        @sub.ToString("c")
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
