@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -62,6 +63,8 @@ namespace TravelExpertsWeb.Models
         [Required(ErrorMessage = "Please enter your password")]
         //[RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,20}$",
         //            ErrorMessage = "Password required 6-20 characters, at least 1 Uppercase and 1 Lowercase Alphabet, and 1 Number.")]
+        [MinLength(6, ErrorMessage = "Password should not be less than 6 characters.")]
+        [MaxLength(20, ErrorMessage = "Password should not be more than 20 characters.")]
         public string PasswordNotHashed { get; set; }
 
         public byte[] PasswordHashed { get; set; }
@@ -70,6 +73,7 @@ namespace TravelExpertsWeb.Models
         [DisplayName("User Name")]
         [Required(ErrorMessage = "Please enter your User name")]
         [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed")]
+        [Remote(action: "VerifyUserName", controller: "Customers")]  //Check whether UserName duplicated in database.
         public string CustUserName { get; set; }
         
 

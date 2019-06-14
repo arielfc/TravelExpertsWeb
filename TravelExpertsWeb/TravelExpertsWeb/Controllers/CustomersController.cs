@@ -174,5 +174,17 @@ namespace TravelExpertsWeb.Controllers
             ViewData["AgentId"] = new SelectList(_context.Agents, "AgentId", "AgentId", customers.AgentId);
             return RedirectToAction("Index", "Home");
         }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyUserName(string custusername)
+        {
+            if (_context.Customers.Any(Cust => Cust.CustUserName == custusername))
+            {
+                return Json($"Email \"{custusername}\" is already in use.");
+            }
+
+            return Json(true);
+        }
+
     }
 }
